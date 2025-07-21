@@ -1,0 +1,97 @@
+{
+  "name": "@elizaos/plugin-moonwell",
+  "description": "Moonwell Protocol DeFi plugin for ElizaOS - enables lending, borrowing, and yield farming on Base L2",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "packageType": "plugin",
+  "platform": "node",
+  "license": "MIT",
+  "author": "ElizaOS",
+  "keywords": [
+    "plugin",
+    "elizaos",
+    "moonwell",
+    "defi",
+    "lending",
+    "borrowing",
+    "base-l2"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elizaos/eliza"
+  },
+  "homepage": "https://elizaos.ai",
+  "bugs": {
+    "url": "https://github.com/elizaos/eliza/issues"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    ".npmignore",
+    "package.json",
+    "tsup.config.ts"
+  ],
+  "dependencies": {
+    "@elizaos/core": "workspace:*",
+    "@moonwell-fi/moonwell-sdk": "^3.0.0",
+    "viem": "^2.21.54",
+    "ethers": "^6.13.4",
+    "bignumber.js": "^9.1.2",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@elizaos/cli": "workspace:*",
+    "prettier": "3.5.3",
+    "tsup": "8.5.0",
+    "typescript": "5.8.2",
+    "@types/node": "^22.10.2"
+  },
+  "scripts": {
+    "start": "elizaos start",
+    "dev": "elizaos dev",
+    "build": "tsup",
+    "lint": "prettier --write ./src",
+    "test": "bun test",
+    "format": "prettier --write ./src",
+    "format:check": "prettier --check ./src"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "resolutions": {
+    "zod": "3.24.2"
+  },
+  "agentConfig": {
+    "pluginType": "elizaos:plugin:1.0.0",
+    "pluginParameters": {
+      "MOONWELL_API_KEY": {
+        "type": "string",
+        "description": "API key for Moonwell SDK authentication"
+      },
+      "BASE_RPC_URL": {
+        "type": "string",
+        "description": "Base L2 RPC endpoint URL"
+      },
+      "WALLET_PRIVATE_KEY": {
+        "type": "string",
+        "description": "Private key for wallet operations (testnet only)"
+      },
+      "HEALTH_FACTOR_ALERT": {
+        "type": "number",
+        "description": "Health factor threshold for alerts (default: 1.5)"
+      }
+    }
+  }
+}

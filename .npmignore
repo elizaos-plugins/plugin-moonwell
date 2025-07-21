@@ -1,0 +1,11 @@
+src
+tsconfig.json
+tsup.config.ts
+.env
+.env.local
+*.test.ts
+*.spec.ts
+__tests__
+coverage
+.turbo
+node_modules
