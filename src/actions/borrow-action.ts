@@ -163,7 +163,7 @@ export const borrowAction: Action = {
       const totalBorrowedAfter = formatUSD(positionAfter.totalBorrowed);
       const healthFactorWarning =
         result.healthFactor < 2.0
-          ? "\n⚠️ Warning: Your health factor is getting low. Monitor your position closely."
+          ? "\n Warning: Your health factor is getting low. Monitor your position closely."
           : "";
 
       const responseText = `Successfully borrowed ${borrowAmountFormatted} ${params.asset} from Moonwell!

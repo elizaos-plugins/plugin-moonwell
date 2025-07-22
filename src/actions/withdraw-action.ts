@@ -193,7 +193,7 @@ export const withdrawAction: Action = {
       const totalSuppliedAfter = formatUSD(positionAfter.totalSupplied);
 
       const supplyStatus = result.remainingSupply.isZero()
-        ? `\n✅ All ${params.asset} withdrawn from Moonwell!`
+        ? `\n All ${params.asset} withdrawn from Moonwell!`
         : `\nRemaining ${params.asset} supply: ${formattedSupplyAfter}`;
 
       const healthFactorInfo = !position.totalBorrowed.isZero()

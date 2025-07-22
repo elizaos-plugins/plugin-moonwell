@@ -191,3 +191,160 @@ export interface MoonwellMarket {
   exchangeRate: BigNumber;
   collateralFactor: BigNumber;
 }
+
+// Reward Types
+export interface UserReward {
+  token: string;
+  symbol: string;
+  amount: BigNumber;
+  valueInUSD: BigNumber;
+}
+
+export interface UserRewards {
+  rewards: UserReward[];
+  totalValueInUSD: BigNumber;
+}
+
+export interface ClaimRewardsResult {
+  transactionHash: string;
+  rewardsClaimed: Array<{
+    token: string;
+    amount: BigNumber;
+  }>;
+}
+
+// Enhanced Balance Types
+export interface EnhancedUserBalance {
+  tokenAddress: string;
+  symbol: string;
+  balance: BigNumber;
+  balanceInUSD: BigNumber;
+  price: number;
+  source: "wallet" | "core" | "morpho" | "vault";
+  apy?: number;
+  isCollateral?: boolean;
+  marketId?: string;
+  vaultId?: string;
+}
+
+export interface BalanceBreakdown {
+  walletBalances: EnhancedUserBalance[];
+  corePositions: EnhancedUserBalance[];
+  morphoPositions: EnhancedUserBalance[];
+  vaultPositions: EnhancedUserBalance[];
+  totalBalanceInUSD: BigNumber;
+  totalWalletValueInUSD: BigNumber;
+  totalCoreValueInUSD: BigNumber;
+  totalMorphoValueInUSD: BigNumber;
+  totalVaultValueInUSD: BigNumber;
+}
+
+export interface ComprehensiveUserData {
+  userAddress: string;
+  // Core Moonwell position data
+  corePosition: UserPosition;
+  coreRewards: UserRewards;
+  // Morpho-related data (imported from morpho types)
+  morphoMarkets: any[]; // MorphoMarket[]
+  morphoPositions: any[]; // MorphoUserPosition[]
+  morphoRewards: any; // MorphoUserRewards
+  morphoVaultPortfolio: any | null; // MorphoVaultPortfolio | null
+  // Enhanced balance data
+  balanceBreakdown: BalanceBreakdown;
+  // Portfolio summary
+  portfolioSummary: PortfolioSummary;
+  lastUpdated: number;
+}
+
+export interface PortfolioSummary {
+  totalNetWorth: BigNumber;
+  totalSupplied: BigNumber;
+  totalBorrowed: BigNumber;
+  totalRewardsValue: BigNumber;
+  overallHealthFactor: number;
+  weightedAverageSupplyAPY: number;
+  weightedAverageBorrowAPY: number;
+  riskDistribution: {
+    safe: BigNumber;
+    moderate: BigNumber;
+    high: BigNumber;
+    critical: BigNumber;
+  };
+  marketDistribution: {
+    core: BigNumber;
+    morpho: BigNumber;
+    vaults: BigNumber;
+  };
+}
+
+// User Balance Methods Interface
+export interface UserBalanceParams {
+  includeWallet?: boolean;
+  includeCore?: boolean;
+  includeMorpho?: boolean;
+  includeVaults?: boolean;
+  minBalanceThreshold?: BigNumber;
+}
+
+// Market Snapshot Types
+export interface MarketSnapshot {
+  asset: string;
+  symbol: string;
+  timestamp: number;
+  supplyAPY: number;
+  borrowAPY: number;
+  totalSupply: BigNumber;
+  totalBorrow: BigNumber;
+  utilizationRate: number;
+  liquidityAvailable: BigNumber;
+  priceInUSD: number;
+  volume24h: BigNumber;
+  uniqueUsers: number;
+}
+
+export interface MarketSnapshotSummary {
+  asset: string;
+  symbol: string;
+  currentPrice: number;
+  priceChange24h: number;
+  priceChange7d: number;
+  apyTrend: {
+    supply: {
+      current: number;
+      avg7d: number;
+      avg30d: number;
+    };
+    borrow: {
+      current: number;
+      avg7d: number;
+      avg30d: number;
+    };
+  };
+  utilizationTrend: {
+    current: number;
+    avg7d: number;
+    avg30d: number;
+  };
+  liquidityTrend: {
+    current: BigNumber;
+    avg7d: BigNumber;
+    min7d: BigNumber;
+    max7d: BigNumber;
+  };
+  volumeTrend: {
+    total24h: BigNumber;
+    avg7d: BigNumber;
+    total7d: BigNumber;
+  };
+  snapshots: MarketSnapshot[];
+}
+
+export interface SnapshotFilters {
+  asset?: string;
+  timeframe?: "1d" | "7d" | "30d" | "90d";
+  includeVolume?: boolean;
+  includeUserMetrics?: boolean;
+}
+
+// Export Morpho types
+export * from "./morpho";

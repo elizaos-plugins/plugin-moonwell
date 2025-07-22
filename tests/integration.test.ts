@@ -35,7 +35,7 @@ describe("Moonwell Plugin Integration", () => {
   test("plugin should have correct structure", () => {
     expect(moonwellPlugin.name).toBe("plugin-moonwell");
     expect(moonwellPlugin.description).toContain("Moonwell Protocol");
-    expect(moonwellPlugin.actions).toHaveLength(6);
+    expect(moonwellPlugin.actions).toHaveLength(9);
     expect(moonwellPlugin.providers).toHaveLength(2);
     expect(moonwellPlugin.evaluators).toBeUndefined();
     expect(moonwellPlugin.services).toHaveLength(2);

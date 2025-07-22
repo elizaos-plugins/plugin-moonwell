@@ -4,7 +4,7 @@ A Moonwell Protocol integration plugin for ElizaOS that enables DeFi lending, bo
 
 ## Features
 
-### 🏦 DeFi Operations
+###  DeFi Operations
 - **Multi-Network Support**: Base, Optimism, and Moonbeam via official Moonwell SDK
 - **Lending & Borrowing**: Supply assets to earn yield and borrow against collateral
 - **Position Management**: Monitor health factors and liquidation risks

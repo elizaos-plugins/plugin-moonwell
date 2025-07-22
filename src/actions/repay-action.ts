@@ -178,7 +178,7 @@ export const repayAction: Action = {
       const totalBorrowedAfter = formatUSD(positionAfter.totalBorrowed);
 
       const debtStatus = result.remainingDebt.isZero()
-        ? `\n✅ ${params.asset} debt fully repaid!`
+        ? `\n ${params.asset} debt fully repaid!`
         : `\nRemaining ${params.asset} debt: ${formattedDebtAfter}`;
 
       const responseText = `Successfully repaid ${formattedRepayAmount} ${params.asset} to Moonwell!

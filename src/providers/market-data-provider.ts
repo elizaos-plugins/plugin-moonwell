@@ -121,14 +121,14 @@ export const marketDataProvider: Provider = {
 function getRateIndicator(rate: number, type: "supply" | "borrow"): string {
   // These thresholds can be adjusted based on market conditions
   if (type === "supply") {
-    if (rate > 0.05) return "🔥"; // Excellent
-    if (rate > 0.03) return "✨"; // Good
-    if (rate > 0.01) return "👍"; // Decent
+    if (rate > 0.05) return ""; // Excellent
+    if (rate > 0.03) return ""; // Good
+    if (rate > 0.01) return ""; // Decent
     return "";
   } else {
-    if (rate < 0.03) return "🎯"; // Excellent
-    if (rate < 0.05) return "✨"; // Good
-    if (rate < 0.08) return "👍"; // Decent
+    if (rate < 0.03) return ""; // Excellent
+    if (rate < 0.05) return ""; // Good
+    if (rate < 0.08) return ""; // Decent
     return "";
   }
 }

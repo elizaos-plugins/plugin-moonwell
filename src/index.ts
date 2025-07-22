@@ -8,7 +8,10 @@ import { WalletService } from "./services/wallet-service";
 // Import actions
 import {
   borrowAction,
+  claimRewardsAction,
   marketDataAction,
+  morphoMarketsAction,
+  morphoVaultsAction,
   positionAction,
   repayAction,
   supplyAction,
@@ -94,7 +97,10 @@ export const moonwellPlugin: Plugin = {
     repayAction,
     withdrawAction,
     marketDataAction,
+    morphoMarketsAction,
+    morphoVaultsAction,
     positionAction,
+    claimRewardsAction,
   ],
   providers: [positionContextProvider, marketDataProvider],
 };
@@ -102,8 +108,11 @@ export const moonwellPlugin: Plugin = {
 // Export individual components for direct access
 export {
   borrowAction,
+  claimRewardsAction,
   marketDataAction,
   marketDataProvider,
+  morphoMarketsAction,
+  morphoVaultsAction,
   MoonwellService,
   positionAction,
   positionContextProvider,
