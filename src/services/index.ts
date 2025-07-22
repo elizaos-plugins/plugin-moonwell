@@ -1,2 +1,2 @@
-export * from './moonwellService';
-export * from './walletService';
+export * from "./moonwell-service";
+export * from "./wallet-service";

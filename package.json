@@ -1,32 +1,11 @@
 {
   "name": "@elizaos/plugin-moonwell",
-  "description": "Moonwell Protocol DeFi plugin for ElizaOS - enables lending, borrowing, and yield farming on Base L2",
-  "version": "1.0.0",
-  "type": "module",
+  "version": "1.2.0",
+  "description": "Moonwell Protocol integration plugin for ElizaOS",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "packageType": "plugin",
-  "platform": "node",
-  "license": "MIT",
-  "author": "ElizaOS",
-  "keywords": [
-    "plugin",
-    "elizaos",
-    "moonwell",
-    "defi",
-    "lending",
-    "borrowing",
-    "base-l2"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/elizaos/eliza"
-  },
-  "homepage": "https://elizaos.ai",
-  "bugs": {
-    "url": "https://github.com/elizaos/eliza/issues"
-  },
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -37,60 +16,95 @@
     }
   },
   "files": [
-    "dist",
-    "README.md",
-    ".npmignore",
-    "package.json",
-    "tsup.config.ts"
+    "dist"
   ],
-  "dependencies": {
-    "@elizaos/core": "workspace:*",
-    "@moonwell-fi/moonwell-sdk": "^3.0.0",
-    "viem": "^2.21.54",
-    "ethers": "^6.13.4",
-    "bignumber.js": "^9.1.2",
-    "zod": "3.24.2"
-  },
-  "devDependencies": {
-    "@elizaos/cli": "workspace:*",
-    "prettier": "3.5.3",
-    "tsup": "8.5.0",
-    "typescript": "5.8.2",
-    "@types/node": "^22.10.2"
-  },
-  "scripts": {
-    "start": "elizaos start",
-    "dev": "elizaos dev",
-    "build": "tsup",
-    "lint": "prettier --write ./src",
-    "test": "bun test",
-    "format": "prettier --write ./src",
-    "format:check": "prettier --check ./src"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "resolutions": {
-    "zod": "3.24.2"
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "clean": "rm -rf dist .turbo node_modules .turbo-tsconfig.json tsconfig.tsbuildinfo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elizaos/eliza.git"
+  },
+  "keywords": [
+    "elizaos",
+    "plugin",
+    "moonwell",
+    "defi",
+    "lending",
+    "borrowing"
+  ],
+  "author": "ElizaOS Contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elizaos/eliza/issues"
+  },
+  "homepage": "https://github.com/elizaos/eliza#readme",
+  "dependencies": {
+    "@elizaos/core": "1.2.5",
+    "@moonwell-fi/moonwell-sdk": "^1.0.0",
+    "bignumber.js": "^9.1.2",
+    "ethers": "^6.13.4",
+    "viem": "^2.21.54",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.0"
   },
   "agentConfig": {
     "pluginType": "elizaos:plugin:1.0.0",
     "pluginParameters": {
-      "MOONWELL_API_KEY": {
+      "MOONWELL_NETWORK": {
         "type": "string",
-        "description": "API key for Moonwell SDK authentication"
+        "description": "Moonwell network to connect to (base, optimism, moonbeam)",
+        "required": false,
+        "sensitive": false
       },
       "BASE_RPC_URL": {
         "type": "string",
-        "description": "Base L2 RPC endpoint URL"
+        "description": "Base L2 RPC endpoint URL. Get free RPC from: https://base.org/docs/tools/rpc-providers",
+        "required": true,
+        "sensitive": false
+      },
+      "OPTIMISM_RPC_URL": {
+        "type": "string",
+        "description": "Optimism RPC endpoint URL (required only for Optimism network)",
+        "required": false,
+        "sensitive": false
+      },
+      "MOONBEAM_RPC_URL": {
+        "type": "string",
+        "description": "Moonbeam RPC endpoint URL (required only for Moonbeam network)",
+        "required": false,
+        "sensitive": false
       },
       "WALLET_PRIVATE_KEY": {
         "type": "string",
-        "description": "Private key for wallet operations (testnet only)"
+        "description": "Private key for wallet operations. WARNING: Only use testnet keys for development",
+        "required": false,
+        "sensitive": true
       },
       "HEALTH_FACTOR_ALERT": {
         "type": "number",
-        "description": "Health factor threshold for alerts (default: 1.5)"
+        "description": "Health factor threshold for liquidation alerts (default: 1.5)",
+        "required": false,
+        "sensitive": false
       }
     }
   }

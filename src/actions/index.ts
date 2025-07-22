@@ -1,6 +1,5 @@
-export * from './marketDataAction';
-export * from './positionAction';
-export * from './governanceAction';
+export { marketDataAction } from "./marketDataAction";
+export { positionAction } from "./positionAction";
 
 // Transaction actions (from existing implementations)
 export { supplyAction } from "./supply-action";
